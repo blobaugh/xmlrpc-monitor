@@ -36,9 +36,9 @@ function xmlrpc_admin_page() {
 /*	echo '<p>';
 	submit_button( __( 'Export to CSV' ), 'secondary', 'xmlrpc_export', false );
 	echo '&nbsp;';
-	submit_button( __( 'Empty log' ), 'secondary', 'xmlrpc_empty_log', false );
+*/	submit_button( __( 'Empty log' ), 'secondary', 'xmlrpc_empty_log', false );
 	echo '</p>';
-*/	$lt->prepare_items();
+	$lt->prepare_items();
 	$lt->display();
 	echo '</form></div>';
 }
@@ -80,14 +80,14 @@ function xmlrpc_maybe_export() {
 
 
 function xmlrpc_maybe_empty_logs() {
-	if( !isset( $_POST['jrc_empty_log'] ) ) {
+	if( !isset( $_POST['xmlrpc_empty_log'] ) ) {
 		return;
 	}
 
 	// Get data
 	$args = array(
 		'post_type' => 'xmlrpc_request',
-		'post_status' => array( 'incoming', 'outgoing' ),
+		'post_status' => 'incoming',
 		'posts_per_page' => -1
 	);
 	$requests = get_posts( $args ); 
